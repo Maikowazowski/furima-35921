@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_ to :user
+  belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   with_options presence: true do
+    validates :image
     validates :title 
     validates :description
     validates :category_id, numericality: { other_than: 1, message: "can't be blank" }

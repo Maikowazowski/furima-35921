@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :authenticate_user!, except: [:index]
 
   def index; end
 
@@ -17,10 +17,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def move_to_index
-    redirect_to new_user_session_path unless user_signed_in?
-  end
 
   def item_params
     params.require(:item).permit(:image, :title, :description, :category_id, :condition_id, :shipping_fee_id,

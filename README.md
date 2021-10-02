@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_logs
+- has_many :purchases
 
 ## items テーブル
 
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to : user
-- has_one : purchase_log
+- has_one : purchase
 
 ## purchase テーブル
 
@@ -48,7 +48,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :delivery_address
+- has_one :address
 
 ## addresses テーブル
 
@@ -64,4 +64,4 @@
 
 ### Association
 
-- belongs_to :purchase_log
+- belongs_to :purchase

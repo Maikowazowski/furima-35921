@@ -37,7 +37,7 @@
 - belongs_to : user
 - has_one : purchase
 
-## purchase テーブル
+## purchases テーブル
 
 | Column | Type       | Options                        |
 | -------| ---------- | ------------------------------ |
@@ -60,7 +60,7 @@
 | house_number       | string     | null: false                    |
 | building_name      | string     |                                |
 | phone_number       | string     | null: false                    |
-| purchase_log       | references | null: false, foreign_key: true |
+| purchase           | references | null: false, foreign_key: true |
 
 ### Association
 

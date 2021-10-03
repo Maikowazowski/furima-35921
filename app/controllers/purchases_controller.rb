@@ -39,7 +39,7 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    if user_signed_in? && current_user.id == @item.user.id
+    if (user_signed_in? && current_user.id == @item.user.id) || (@item.purchase.present?)
       redirect_to root_path
     end
   end

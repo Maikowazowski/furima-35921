@@ -20,7 +20,7 @@
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
+| Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | title                 | string     | null: false                    |
 | description           | text       | null: false                    |
@@ -36,6 +36,8 @@
 
 - belongs_to : user
 - has_one : purchase
+- has_many :item_tag_relations
+- has_many :tags, through: :item_tag_relations
 
 ## purchases テーブル
 
@@ -65,3 +67,26 @@
 ### Association
 
 - belongs_to :purchase
+
+## tags テーブル
+
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | uniqueness: true          |
+### Association
+
+- has_many :item_tag_relations
+- has_many :items, through: :item_tag_relations
+
+## item_tag_relations テーブル
+
+| Column | Type       | Options                        |
+| -------| ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| tag    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one :address

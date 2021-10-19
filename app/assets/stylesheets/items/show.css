@@ -79,6 +79,12 @@
   overflow-wrap: anywhere;
 }
 
+.item-tag-box {
+  font-size: 18px;
+  margin: 40px 0px;
+  overflow-wrap: anywhere;
+}
+
 .detail-table {
   margin-bottom: 30px;
   width: 100%;

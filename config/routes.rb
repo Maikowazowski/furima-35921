@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
     resources :purchases, only: [:index, :create]
   end
+  resources :tags, only: [:show]
 end

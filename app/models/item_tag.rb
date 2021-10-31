@@ -1,7 +1,7 @@
 class ItemTag
 
   include ActiveModel::Model
-  attr_accessor :image, :title, :description, :category_id, :condition_id, :shipping_fee_id, :shipping_from_id, :scheduled_delivery_id, :price, :user_id, :name
+  attr_accessor :image, :title, :description, :category_id, :condition_id, :shipping_fee_id, :shipping_from_id, :scheduled_delivery_id, :price, :user_id, :item_id, :name
 
   with_options presence: true do
     validates :image
@@ -21,10 +21,24 @@ class ItemTag
 
   def save
     item = Item.create(image: image, title: title, description: description, category_id: category_id, condition_id: condition_id, shipping_fee_id: shipping_fee_id, shipping_from_id: shipping_from_id, scheduled_delivery_id: scheduled_delivery_id, price: price, user_id: user_id)
-    tag = Tag.where(name: name).first_or_initialize
-    tag.save
-
-    ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
+    tag_list = name.split(',')
+    tag_list.each do |tag_name|
+      tag = Tag.where(name: tag_name).first_or_initialize
+      tag.save
+      ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
+    end  
   end
 
+  def update
+   @item = Item.find(item_id)
+   item = @item.update(image: image, title: title, description: description, category_id: category_id, condition_id: condition_id, shipping_fee_id: shipping_fee_id, shipping_from_id: shipping_from_id, scheduled_delivery_id: scheduled_delivery_id, price: price, user_id: user_id)
+    tag_list = name.split(',')
+    tag_list.each do |tag_name|
+      tag = Tag.where(name: tag_name).first_or_initialize
+      tag.save
+      unless ItemTagRelation.where(item_id: item_id, tag_id: tag.id).exists?
+        ItemTagRelation.create(item_id: item_id, tag_id: tag.id)
+      end
+    end
+  end
 end

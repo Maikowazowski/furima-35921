@@ -31,10 +31,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @tags = @item.tags.pluck(:name).join(',')
+    @item_tags = ItemTag.new(image: @image, title: @item.title, description: @item.description, category_id: @item.category_id, condition_id: @item.condition_id,shipping_fee_id: @item.shipping_fee_id,
+                             shipping_from_id: @item.shipping_fee_id, scheduled_delivery_id: @item.scheduled_delivery_id, price: @item.price, name: @tags)
   end
 
   def update
-    if @item.update(item_params)
+    @item_tags = ItemTag.new(update_params)
+    if @item_tags.valid? 
+      @item_tags.update
       redirect_to item_path
     else
       render :edit
@@ -51,6 +56,11 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item_tag).permit(:image, :title, :description, :category_id, :condition_id, :shipping_fee_id,
                                  :shipping_from_id, :scheduled_delivery_id, :price, :name).merge(user_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:item_tag).permit(:image, :title, :description, :category_id, :condition_id, :shipping_fee_id,
+                                 :shipping_from_id, :scheduled_delivery_id, :price, :name).merge(user_id: current_user.id, item_id: @item.id)
   end
 
   def set_item

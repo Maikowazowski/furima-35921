@@ -36,6 +36,15 @@
     <div class="item-explain-box">
       <span><%= @item.description %></span>
     </div>
+    <div class="item-tag-box">
+      <ul class="tag">
+          <li class="tag-list">
+            <%@item.tags.each do |tag| %>
+              <%= link_to "# " + tag.name, tag_path(tag.id), class: "tag-link" %>
+            <%end%>
+          </li>
+        </ul>
+    </div>
     <table class="detail-table">
       <tbody>
         <tr>

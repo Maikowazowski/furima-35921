@@ -52,12 +52,14 @@
 
 .item-red-btn {
   text-align: center;
-  background-color: #ea352d;
+  background-color: #3CCACE;
+  border-radius: 3px;
   font-size: 24px;
+  letter-spacing: 1px;
   font-weight: bold;
   color: #FFF;
   margin: 20px 0px;
-  padding: 2vh 10vw;
+  padding: 12px 40px;
 }
 
 .or-text {
@@ -67,16 +69,34 @@
 .item-destroy {
   background-color: lightgray;
   text-align: center;
+  border-radius: 4px;
   font-size: 24px;
-  color: black;
+  letter-spacing: 1px;
+  color: #2d2d2d;
   margin: 20px 0px;
-  padding: 2vh 10vw;
+  padding: 12px 77px;
 }
 
 .item-explain-box {
   font-size: 18px;
   margin: 40px 0px;
   overflow-wrap: anywhere;
+}
+
+.item-tag-box {
+  overflow-wrap: anywhere;
+  margin: 40px 0px;
+  background-color: #f3f1f2;
+  border: 1px solid #f3f1f2;
+  border-radius: 3px;
+}
+
+.tag-link{
+  padding: 2px 5px;
+  float: left;
+  font-size: 16px;
+  text-decoration: none;
+  color: #2d2d2d;
 }
 
 .detail-table {
